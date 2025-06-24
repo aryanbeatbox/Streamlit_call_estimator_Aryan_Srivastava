@@ -63,17 +63,17 @@ def calculate_total_time_with_dialing(
 # Streamlit UI
 st.title("📞 Call Batch Time Estimator")
 
-with st.sidebar:
-    st.header("📋 Input Parameters")
-    N = st.number_input("Total Leads (N)", min_value=1, value=1000)
-    tier = st.selectbox("Customer Tier", [1, 2, 3])
-    whitelist_option = st.radio("Is Whitelisting Enabled?", ["Yes", "No"])
-    whitelisting = whitelist_option == "Yes"
-    A = st.number_input("Average Handling Time per Call (A) in minutes", min_value=0.1, value=2.0)
-    M = st.number_input("Concurrent Calling Slots (M)", min_value=1, value=20)
-    G = st.number_input("Retry Gap (G) in hours", min_value=0.0, value=1.0)
-    Y = st.number_input("Max Number of Retries (Y)", min_value=0, value=2)
-    working_window = st.number_input("Working Window per Day (in hours)", min_value=1.0, value=8.0)
+st.markdown("📋 Input Parameters")
+
+N = st.number_input("Total Leads (N)", min_value=1, value=1000)
+tier = st.selectbox("Customer Tier", [1, 2, 3])
+whitelist_option = st.radio("Is Whitelisting Enabled?", ["Yes", "No"])
+whitelisting = whitelist_option == "Yes"
+A = st.number_input("Average Handling Time per Call (A) in minutes", min_value=0.1, value=2.0)
+M = st.number_input("Concurrent Calling Slots (M)", min_value=1, value=20)
+G = st.number_input("Retry Gap (G) in hours", min_value=0.0, value=1.0)
+Y = st.number_input("Max Number of Retries (Y)", min_value=0, value=2)
+working_window = st.number_input("Working Window per Day (in hours)", min_value=1.0, value=8.0)
 
 if st.button("🚀 Estimate Time"):
     try:
@@ -85,3 +85,4 @@ if st.button("🚀 Estimate Time"):
         st.metric("📅 Working Days Needed", f"{days}")
     except Exception as e:
         st.error(f"❌ Error: {e}")
+
